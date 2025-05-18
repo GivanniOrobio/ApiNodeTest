@@ -98,10 +98,10 @@ export const deleteProducts = async (req, res) => {
     if(!product) return res.status(404).json({message: "Producto no encontrado"})
 
     if(product.image?.public_id){
-        await deleteImage(product.image.public_id)
+      await deleteImage(product.image.public_id)
     }  
     
-    res.json("producto eliminado correctamente", result)
+    res.json("producto eliminado correctamente")
     
   }catch(error){
     
