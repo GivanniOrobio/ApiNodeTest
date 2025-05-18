@@ -1,0 +1,48 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Gestión de Productos</title>
+</head>
+<body>
+    <h2>Crear Producto</h2>
+    <form id="createForm" enctype="multipart/form-data">
+        <input type="text" name="name" placeholder="Nombre" required><br>
+        <input type="text" name="description" placeholder="Descripción" required><br>
+        <input type="number" name="price" placeholder="Precio" required><br>
+        <input type="file" name="image"><br>
+        <button type="submit">Crear Producto</button>
+    </form>
+
+    <script>
+        // Crear Producto
+        document.getElementById('createForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const formData = new FormData(e.target);
+            
+            try {
+                const response = await fetch('/products', {
+                    method: 'POST',
+                    body: formData
+                });
+                const data = await response.json();
+                alert('Producto creado exitosamente');
+            } catch (error) {
+                console.error('Error:', error);
+            }
+        });
+
+        // Función para obtener productos
+        async function getProducts() {
+            try {
+                const response = await fetch('/products');
+                const products = await response.json();
+                console.log(products);
+            } catch (error) {
+                console.error('Error:', error);
+            }
+        }
+    </script>
+</body>
+</html>

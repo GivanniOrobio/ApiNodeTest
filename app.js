@@ -10,6 +10,7 @@ const app = express();
 app.use(cors())//permite que se puedan hacer peticiones desde otros dominios
 app.use(morgan("dev"));//idica como se van a ver los logs en la consola
 app.use(express.json())
+app.use(express.static('public'))
 
 app.use(indexRoutes)
 app.use(productRoutes)
