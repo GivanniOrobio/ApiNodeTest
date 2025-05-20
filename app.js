@@ -1,6 +1,7 @@
 import express from "express";
 import morgan from "morgan";
 import cors from "cors";
+import fetch from "node-fetch";
 import indexRoutes from "./routes/index.routes.js";
 import productRoutes from "./routes/product.routes.js";
 
