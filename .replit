@@ -13,12 +13,12 @@ deploymentTarget = "autoscale"
 ignorePorts = false
 
 [[ports]]
-localPort = 3000
+localPort = 5000
 externalPort = 80
 
 [[ports]]
-localPort = 7410
-externalPort = 3000
+localPort = 10000
+externalPort = 5000
 
 [workflows]
 runButton = "Start Server"
