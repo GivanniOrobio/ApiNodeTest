@@ -1,10 +1,11 @@
-
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <title>Gestión de Productos</title>
 </head>
+
 <body>
     <h2>Crear Producto</h2>
     <form id="createForm" enctype="multipart/form-data">
@@ -20,7 +21,7 @@
         document.getElementById('createForm').addEventListener('submit', async (e) => {
             e.preventDefault();
             const formData = new FormData(e.target);
-            
+
             try {
                 const response = await fetch('/products', {
                     method: 'POST',
@@ -33,16 +34,39 @@
             }
         });
 
-        // Función para obtener productos
+        // Función para obtener productos y mostrarlos en .productos
         async function getProducts() {
             try {
                 const response = await fetch('/products');
                 const products = await response.json();
-                console.log(products);
+
+                const productosDiv = document.querySelector('.productos');
+                productosDiv.innerHTML = ''; // Limpiar contenido previo
+
+                products.forEach(product => {
+                    const productElement = document.createElement('div');
+                    productElement.innerHTML = `
+                        <h3>${product.name}</h3>
+                        <p>${product.description}</p>
+                        <p>Precio: $${product.price}</p>
+                        ${product.image?.secure_url ? `<img src="${product.image.secure_url}" alt="${product.name}" width="100">` : ''}
+                        <hr>
+                        `;
+                    productosDiv.appendChild(productElement);
+                });
             } catch (error) {
-                console.error('Error:', error);
+                console.error('Error al obtener productos:', error);
             }
         }
+
+        // Llamar a la función para mostrar productos al cargar la página
+        window.addEventListener('DOMContentLoaded', getProducts);
     </script>
+
+    <hr>
+    <h2>Listar productos</h2>
+    <div class="productos"></div>
+    <script src="js/script.js"></script>
 </body>
+
 </html>

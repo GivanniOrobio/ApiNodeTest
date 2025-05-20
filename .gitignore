@@ -1,6 +1,7 @@
 # Logs
 logs
 *.log
+.env
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
@@ -131,3 +132,6 @@ dist
 
 # Replit debugger
 .breakpoints
+
+# conguration
+config.js
